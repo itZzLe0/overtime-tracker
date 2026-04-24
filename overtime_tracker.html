@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Over Time">
+<title>Over Time</title>
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#F2F2F7;
+  --white:#FFFFFF;
+  --surface:#F8F8FC;
+  --accent:#5B52E8;
+  --accent-lt:#EEEEFF;
+  --accent-lt2:#E8E6FF;
+  --red:#E84545;
+  --red-lt:#FFF0F0;
+  --green:#22C55E;
+  --amber:#F59E0B;
+  --text:#111122;
+  --text2:#7777AA;
+  --text3:#AAAACC;
+  --border:rgba(0,0,0,0.07);
+  --border2:rgba(91,82,232,0.15);
+  --shadow:0 2px 12px rgba(0,0,0,0.06);
+  --radius:18px;
+  --radius-sm:12px;
+}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;padding-bottom:90px}
+.safe-top{height:env(safe-area-inset-top,44px)}
+
+/* HEADER */
+.header{padding:10px 20px 6px;display:flex;justify-content:space-between;align-items:center}
+.header h1{font-size:26px;font-weight:600;letter-spacing:-0.6px;color:var(--text)}
+.header p{font-size:12px;color:var(--text2);margin-top:2px;font-family:'DM Mono',monospace}
+.header-icon{width:42px;height:42px;background:var(--accent);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 4px 14px rgba(91,82,232,0.35)}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px 16px 0}
+.stat{background:var(--white);border-radius:var(--radius);padding:15px 16px;box-shadow:var(--shadow)}
+.stat-lbl{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--text2);margin-bottom:6px}
+.stat-val{font-size:22px;font-weight:600;font-family:'DM Mono',monospace;color:var(--text)}
+.stat.accent .stat-val{color:var(--accent)}
+
+/* TABS */
+.tabs-outer{padding:14px 16px 0}
+.tabs{display:flex;background:var(--white);border-radius:var(--radius-sm);padding:4px;gap:3px;box-shadow:var(--shadow)}
+.tab{flex:1;padding:10px 4px;text-align:center;font-size:13px;font-weight:500;color:var(--text2);border-radius:9px;cursor:pointer;border:none;background:none;font-family:'DM Sans',sans-serif;transition:all 0.2s}
+.tab.active{background:var(--accent);color:#fff;box-shadow:0 2px 8px rgba(91,82,232,0.3)}
+
+/* CONTENT */
+.content{padding:12px 16px 0}
+.card{background:var(--white);border-radius:var(--radius);padding:18px;margin-bottom:12px;box-shadow:var(--shadow)}
+.card-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--text2);margin-bottom:13px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.fg{display:flex;flex-direction:column;gap:5px}
+.fg label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--text2)}
+.fg input,.fg textarea{background:var(--surface);border:1.5px solid var(--border);border-radius:10px;color:var(--text);font-size:16px;padding:11px 13px;width:100%;font-family:'DM Sans',sans-serif;-webkit-appearance:none;transition:border-color 0.2s}
+.fg input:focus,.fg textarea:focus{outline:none;border-color:var(--accent);background:#fff}
+.fg textarea{resize:none;height:68px;font-size:15px}
+
+/* PRESETS */
+.presets{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:13px}
+.preset{padding:7px 14px;font-size:12px;font-weight:500;border:1.5px solid var(--border);border-radius:20px;background:var(--surface);color:var(--text2);cursor:pointer;font-family:'DM Mono',monospace;transition:all 0.15s}
+.preset:active{background:var(--accent-lt2);border-color:var(--accent);color:var(--accent)}
+
+/* PREVIEW */
+.preview-box{border-radius:var(--radius-sm);padding:16px;text-align:center;margin:13px 0;background:var(--surface);border:1.5px solid var(--border);transition:all 0.3s}
+.preview-box.pos{background:var(--accent-lt);border-color:var(--border2)}
+.preview-box.neg{background:var(--red-lt);border-color:rgba(232,69,69,0.2)}
+.preview-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text2);margin-bottom:6px}
+.preview-box.pos .preview-lbl{color:var(--accent)}
+.preview-box.neg .preview-lbl{color:var(--red)}
+.preview-val{font-size:32px;font-weight:600;font-family:'DM Mono',monospace;color:var(--text2)}
+.preview-box.pos .preview-val{color:var(--accent)}
+.preview-box.neg .preview-val{color:var(--red)}
+
+.btn-save{width:100%;padding:15px;background:var(--accent);color:#fff;border:none;border-radius:var(--radius-sm);font-size:16px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;box-shadow:0 4px 14px rgba(91,82,232,0.3);transition:opacity 0.2s}
+.btn-save:active{opacity:0.78}
+
+/* HISTORY */
+.month-grp{margin-bottom:20px}
+.month-hdr{display:flex;justify-content:space-between;align-items:center;padding:0 2px 9px;border-bottom:1.5px solid var(--bg);margin-bottom:9px}
+.month-hdr-name{font-size:16px;font-weight:600}
+.month-hdr-ot{font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:var(--accent)}
+.entry-row{background:var(--white);border-radius:var(--radius-sm);padding:13px 15px;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;box-shadow:var(--shadow)}
+.entry-date{font-size:14px;font-weight:600}
+.entry-meta{font-size:12px;color:var(--text2);margin-top:2px;font-family:'DM Mono',monospace}
+.entry-note-txt{font-size:12px;color:var(--accent);margin-top:3px;font-weight:500}
+.entry-right{display:flex;align-items:center;gap:8px}
+.badge{font-size:13px;font-weight:600;padding:5px 12px;border-radius:20px;font-family:'DM Mono',monospace}
+.badge.pos{background:var(--accent-lt2);color:var(--accent)}
+.badge.neg{background:var(--red-lt);color:var(--red)}
+.badge.zero{background:var(--surface);color:var(--text2)}
+.del{background:none;border:none;color:var(--text3);font-size:15px;cursor:pointer;padding:4px}
+.del:active{color:var(--red)}
+.empty-state{text-align:center;padding:50px 20px;color:var(--text2);line-height:1.7}
+.empty-state .ei{font-size:40px;margin-bottom:12px}
+
+/* CALENDAR */
+.cal-year-lbl{text-align:center;font-size:20px;font-weight:600;padding:2px 0 14px;letter-spacing:-0.4px;color:var(--text)}
+.cal-card{background:var(--white);border-radius:var(--radius);padding:16px;margin-bottom:11px;box-shadow:var(--shadow)}
+.cal-card-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.cal-card-name{font-size:15px;font-weight:600;color:var(--text)}
+.cal-card-ot{font-size:12px;font-family:'DM Mono',monospace;font-weight:500;color:var(--accent)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+.cal-dow{text-align:center;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text3);padding:3px 0 6px}
+.cal-day{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:8px;font-size:12px;font-weight:500;color:var(--text2)}
+.cal-day.wknd{color:var(--text3)}
+.cal-day.has-pos{background:var(--accent-lt2);color:var(--accent);font-weight:700}
+.cal-day.has-neg{background:var(--red-lt);color:var(--red);font-weight:700}
+.cal-day.is-today{box-shadow:0 0 0 2px var(--accent);color:var(--accent);font-weight:700}
+.cal-day.is-holiday{background:#FFF7ED;color:#C2410C;font-weight:700}
+.cal-day.is-holiday.has-pos{background:var(--accent-lt2);color:var(--accent)}
+.cal-day.is-holiday.has-neg{background:var(--red-lt);color:var(--red)}
+.cal-dot{font-size:8px;font-family:'DM Mono',monospace;margin-top:1px;line-height:1.1}
+.cal-holiday-dot{width:4px;height:4px;border-radius:50%;background:#C2410C;margin-top:2px}
+
+.bottom-safe{height:env(safe-area-inset-bottom,20px)}
+</style>
+</head>
+<body>
+<div class="safe-top"></div>
+
+<div class="header">
+  <div>
+    <h1>Over Time</h1>
+    <p id="hdr-date"></p>
+  </div>
+  <div class="header-icon">⏱</div>
+</div>
+
+<div class="stats">
+  <div class="stat accent"><div class="stat-lbl">This Month</div><div class="stat-val" id="s-month">0:00</div></div>
+  <div class="stat accent"><div class="stat-lbl">All Time</div><div class="stat-val" id="s-total">0:00</div></div>
+  <div class="stat"><div class="stat-lbl">Entries</div><div class="stat-val" id="s-count">0</div></div>
+  <div class="stat accent"><div class="stat-lbl">Daily Avg</div><div class="stat-val" id="s-avg">0:00</div></div>
+</div>
+
+<div class="tabs-outer">
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('add')">+ Log</button>
+    <button class="tab" onclick="switchTab('history')">History</button>
+    <button class="tab" onclick="switchTab('calendar')">Calendar</button>
+    <button class="tab" onclick="switchTab('export')">Export</button>
+  </div>
+</div>
+
+<!-- LOG -->
+<div class="content" id="tab-add">
+  <div class="card">
+    <div class="card-lbl">New Entry</div>
+    <div class="form-row">
+      <div class="fg"><label>Date</label><input type="date" id="i-date"></div>
+      <div class="fg"><label>Std Hours</label><input type="number" id="i-std" value="8" min="1" max="24" step="0.5"></div>
+    </div>
+
+    <div class="form-row">
+      <div class="fg"><label>Clock In</label><input type="time" id="i-start"></div>
+      <div class="fg"><label>Clock Out</label><input type="time" id="i-end"></div>
+    </div>
+    <div class="preview-box" id="preview">
+      <div class="preview-lbl">Overtime Preview</div>
+      <div class="preview-val" id="preview-val">–</div>
+    </div>
+    <div class="fg" style="margin-bottom:13px">
+      <label>Note (optional)</label>
+      <textarea id="i-note" placeholder="e.g. Emergency shift, deadline..."></textarea>
+    </div>
+    <button class="btn-save" onclick="saveEntry()">Save Entry</button>
+  </div>
+</div>
+
+<!-- HISTORY -->
+<div class="content" id="tab-history" style="display:none">
+  <div style="margin-bottom:12px">
+    <select id="hist-filter" onchange="renderHistory()" style="background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:15px;font-weight:500;padding:11px 13px;width:100%;font-family:'DM Sans',sans-serif;-webkit-appearance:none;box-shadow:var(--shadow)">
+      <option value="all">All months</option>
+    </select>
+  </div>
+  <div id="history-wrap"></div>
+</div>
+
+<!-- CALENDAR -->
+<div class="content" id="tab-calendar" style="display:none">
+  <div style="display:flex;gap:12px;flex-wrap:wrap;padding:4px 2px 14px;justify-content:center">
+    <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text2)"><div style="width:12px;height:12px;border-radius:4px;background:#E8E6FF"></div>Overtime</div>
+    <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text2)"><div style="width:12px;height:12px;border-radius:4px;background:#FFF0F0"></div>Under time</div>
+    <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text2)"><div style="width:12px;height:12px;border-radius:4px;background:#FFF7ED"></div>Public Holiday</div>
+  </div>
+  <div id="cal-wrap"></div>
+</div>
+
+<!-- EXPORT -->
+<div class="content" id="tab-export" style="display:none">
+  <div class="card">
+    <div class="card-lbl">Export to HR Excel</div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:16px;line-height:1.6">Select a month to export your entries.</p>
+    <div class="fg" style="margin-bottom:14px">
+      <label>Month</label>
+      <select id="exp-month" style="background:var(--surface);border:1.5px solid var(--border);border-radius:10px;color:var(--text);font-size:16px;padding:11px 13px;width:100%;font-family:'DM Sans',sans-serif;-webkit-appearance:none">
+        <option value="2026-04">April 2026</option>
+        <option value="2026-05">May 2026</option>
+        <option value="2026-06">June 2026</option>
+        <option value="2026-07">July 2026</option>
+        <option value="2026-08">August 2026</option>
+        <option value="2026-09">September 2026</option>
+        <option value="2026-10">October 2026</option>
+        <option value="2026-11">November 2026</option>
+        <option value="2026-12">December 2026</option>
+        <option value="2027-01">January 2027</option>
+        <option value="2027-02">February 2027</option>
+        <option value="2027-03">March 2027</option>
+        <option value="2027-04">April 2027</option>
+        <option value="2027-05">May 2027</option>
+        <option value="2027-06">June 2027</option>
+        <option value="2027-07">July 2027</option>
+        <option value="2027-08">August 2027</option>
+        <option value="2027-09">September 2027</option>
+        <option value="2027-10">October 2027</option>
+        <option value="2027-11">November 2027</option>
+        <option value="2027-12">December 2027</option>
+      </select>
+    </div>
+    <div id="exp-preview" style="background:var(--surface);border-radius:var(--radius-sm);padding:14px;margin-bottom:14px;display:none">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text2);margin-bottom:10px">Entries for selected month</div>
+      <div id="exp-preview-list"></div>
+    </div>
+    <div id="exp-empty" style="background:var(--red-lt);border-radius:var(--radius-sm);padding:14px;margin-bottom:14px;display:none">
+      <div style="font-size:13px;color:var(--red);font-weight:500">No entries found for this month.</div>
+    </div>
+    <button class="btn-save" id="exp-btn" onclick="exportExcel()" style="background:var(--green,#22C55E);box-shadow:0 4px 14px rgba(34,197,94,0.3)">⬇ Download</button>
+  </div>
+  <div class="card" style="background:var(--accent-lt);border:1.5px solid var(--border2)">
+    <div style="font-size:12px;color:var(--accent);font-weight:500;line-height:1.7">
+      <strong>How it works:</strong><br>
+      The downloaded file is a pre-filled copy of the official HR form with your clock-in/clock-out times already filled in for each day.
+    </div>
+  </div>
+</div>
+
+<div class="bottom-safe"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js"></script>
+<script>
+const KEY='ot_v2';
+let data=[];
+function load(){try{data=JSON.parse(localStorage.getItem(KEY))||[];}catch(e){data=[];}}
+function save(){localStorage.setItem(KEY,JSON.stringify(data));}
+function toMin(t){const[h,m]=t.split(':').map(Number);return h*60+m;}
+function fmt(m){const s=m<0?'-':'';const a=Math.abs(m);return s+Math.floor(a/60)+':'+String(a%60).padStart(2,'0');}
+function calcOT(s,e,std){let sm=toMin(s),em=toMin(e);if(em<=sm)em+=1440;return(em-sm)-std*60;}
+
+function updatePreview(){
+  const s=document.getElementById('i-start').value;
+  const e=document.getElementById('i-end').value;
+  const std=parseFloat(document.getElementById('i-std').value)||8;
+  const box=document.getElementById('preview');
+  const val=document.getElementById('preview-val');
+  if(!s||!e){val.textContent='–';box.className='preview-box';return;}
+  const ot=calcOT(s,e,std);
+  val.textContent=(ot>=0?'+':'')+fmt(ot);
+  box.className='preview-box '+(ot>0?'pos':ot<0?'neg':'');
+}
+
+function setP(s,e){
+  document.getElementById('i-start').value=s;
+  document.getElementById('i-end').value=e;
+  updatePreview();
+}
+
+function saveEntry(){
+  const date=document.getElementById('i-date').value;
+  const s=document.getElementById('i-start').value;
+  const e=document.getElementById('i-end').value;
+  const std=parseFloat(document.getElementById('i-std').value)||8;
+  const note=document.getElementById('i-note').value.trim();
+  if(!date||!s||!e){alert('Please fill in date, clock in and clock out.');return;}
+  const ot=calcOT(s,e,std);
+  data.unshift({id:Date.now(),date,start:s,end:e,std,ot,note});
+  save();
+  document.getElementById('i-note').value='';
+  document.getElementById('i-start').value='';
+  document.getElementById('i-end').value='';
+  updatePreview();
+  renderAll();
+  switchTab('history');
+}
+
+function deleteEntry(id){
+  if(!confirm('Delete this entry?'))return;
+  data=data.filter(d=>d.id!==id);
+  save();renderAll();
+}
+
+function renderStats(){
+  const now=new Date();
+  const cm=now.getMonth(),cy=now.getFullYear();
+  const mData=data.filter(d=>{const x=new Date(d.date);return x.getMonth()===cm&&x.getFullYear()===cy;});
+  const total=data.reduce((s,d)=>s+d.ot,0);
+  const month=mData.reduce((s,d)=>s+d.ot,0);
+  const avg=data.length?Math.round(total/data.length):0;
+  document.getElementById('s-month').textContent=fmt(month);
+  document.getElementById('s-total').textContent=fmt(total);
+  document.getElementById('s-count').textContent=data.length;
+  document.getElementById('s-avg').textContent=fmt(avg);
+}
+
+function renderHistory(){
+  const wrap=document.getElementById('history-wrap');
+  if(!data.length){
+    wrap.innerHTML='<div class="empty-state"><div class="ei">📋</div><div>No entries yet.<br>Log your first overtime shift!</div></div>';
+    return;
+  }
+
+  // Build groups from all data
+  const groups={};
+  data.forEach(d=>{
+    const dt=new Date(d.date);
+    const key=dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0');
+    const lbl=dt.toLocaleDateString('en-GB',{month:'long',year:'numeric'});
+    if(!groups[key])groups[key]={lbl,items:[],total:0};
+    groups[key].items.push(d);
+    groups[key].total+=d.ot;
+  });
+  const sortedKeys=Object.keys(groups).sort().reverse();
+
+  // Update dropdown options (preserve current selection)
+  const sel=document.getElementById('hist-filter');
+  const curVal=sel.value;
+  const nowKey=new Date().getFullYear()+'-'+String(new Date().getMonth()+1).padStart(2,'0');
+  sel.innerHTML='<option value="all">All months</option>';
+  sortedKeys.forEach(k=>{
+    const opt=document.createElement('option');
+    opt.value=k;
+    opt.textContent=groups[k].lbl+' — '+fmt(groups[k].total);
+    sel.appendChild(opt);
+  });
+  // Restore selection: if previously "all" keep it, else keep same month, else default to current month
+  if(curVal==='all'){
+    sel.value='all';
+  } else if(groups[curVal]){
+    sel.value=curVal;
+  } else {
+    sel.value=groups[nowKey]?nowKey:(sortedKeys[0]||'all');
+  }
+
+  // Filter which keys to show
+  const activeFilter=sel.value;
+  const keysToShow=activeFilter==='all'?sortedKeys:[activeFilter].filter(k=>groups[k]);
+
+  let html='';
+  keysToShow.forEach(k=>{
+    const g=groups[k];
+    html+=`<div class="month-grp"><div class="month-hdr"><span class="month-hdr-name">${g.lbl}</span><span class="month-hdr-ot">${fmt(g.total)}</span></div>`;
+    g.items.forEach(d=>{
+      const dt=new Date(d.date);
+      const dayStr=dt.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});
+      const cls=d.ot>0?'pos':d.ot<0?'neg':'zero';
+      const otTxt=(d.ot>=0?'+':'')+fmt(d.ot);
+      html+=`<div class="entry-row">
+        <div>
+          <div class="entry-date">${dayStr}</div>
+          <div class="entry-meta">${d.start} – ${d.end} · ${d.std}h</div>
+          ${d.note?`<div class="entry-note-txt">${d.note}</div>`:''}
+        </div>
+        <div class="entry-right">
+          <span class="badge ${cls}">${otTxt}</span>
+          <button class="del" onclick="deleteEntry(${d.id})">✕</button>
+        </div>
+      </div>`;
+    });
+    html+='</div>';
+  });
+  wrap.innerHTML=html;
+}
+
+function renderCalendar(){
+  const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const DOWS=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  const todayStr=new Date().toISOString().split('T')[0];
+
+  const HOLIDAYS={
+    // 2026
+    '2026-04-01':'Cyprus National Day',
+    '2026-04-10':'Good Friday',
+    '2026-04-12':'Easter Sunday',
+    '2026-04-13':'Easter Monday',
+    '2026-05-01':'Labour Day',
+    '2026-06-01':'Whit Monday',
+    '2026-08-15':'Assumption Day',
+    '2026-10-01':'Cyprus Independence Day',
+    '2026-10-28':'Greek National Day',
+    '2026-12-25':'Christmas Day',
+    '2026-12-26':'Boxing Day',
+    // 2027
+    '2027-01-01':'New Year\'s Day',
+    '2027-01-06':'Epiphany',
+    '2027-03-15':'Green Monday',
+    '2027-03-25':'Greek Independence Day',
+    '2027-04-01':'Cyprus National Day',
+    '2027-04-30':'Good Friday',
+    '2027-05-01':'Labour Day / Easter Saturday',
+    '2027-05-02':'Easter Sunday',
+    '2027-05-03':'Easter Monday',
+    '2027-06-21':'Whit Monday',
+    '2027-08-15':'Assumption Day',
+    '2027-10-01':'Cyprus Independence Day',
+    '2027-10-28':'Greek National Day',
+    '2027-12-25':'Christmas Day',
+    '2027-12-26':'Boxing Day',
+  };
+
+  const lookup={};
+  data.forEach(d=>{lookup[d.date]=(lookup[d.date]||0)+d.ot;});
+
+  // Months to render: April 2026 → December 2027
+  const periods=[];
+  for(let m=3;m<12;m++) periods.push({year:2026,month:m});
+  for(let m=0;m<12;m++) periods.push({year:2027,month:m});
+
+  let html='';
+  let currentYear=null;
+
+  periods.forEach(({year,month})=>{
+    if(year!==currentYear){
+      currentYear=year;
+      html+=`<div class="cal-year-lbl">${year}</div>`;
+    }
+    const monthOT=Object.keys(lookup).filter(k=>{const d=new Date(k);return d.getFullYear()===year&&d.getMonth()===month;}).reduce((s,k)=>s+lookup[k],0);
+    const daysInMonth=new Date(year,month+1,0).getDate();
+    let startDow=new Date(year,month,1).getDay()-1;
+    if(startDow<0)startDow=6;
+    const otLabel=monthOT!==0?(monthOT>0?'+':'')+fmt(monthOT):'—';
+    html+=`<div class="cal-card"><div class="cal-card-hdr"><span class="cal-card-name">${MONTHS[month]}</span><span class="cal-card-ot">${otLabel}</span></div><div class="cal-grid">`;
+    DOWS.forEach(d=>{html+=`<div class="cal-dow">${d}</div>`;});
+    for(let i=0;i<startDow;i++)html+=`<div class="cal-day"></div>`;
+    for(let day=1;day<=daysInMonth;day++){
+      const ds=`${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+      const dow=new Date(year,month,day).getDay();
+      const isWknd=dow===0||dow===6;
+      const isToday=ds===todayStr;
+      const isHoliday=!!HOLIDAYS[ds];
+      const ot=lookup[ds];
+      let cls='cal-day';
+      let dot='';
+      if(ot!==undefined){
+        cls+=ot>0?' has-pos':ot<0?' has-neg':'';
+        const h=Math.floor(Math.abs(ot)/60);
+        dot=`<div class="cal-dot">${ot>0?'+':''}${h}h</div>`;
+      } else if(isWknd){
+        cls+=' wknd';
+      }
+      if(isHoliday)cls+=' is-holiday';
+      if(isToday)cls+=' is-today';
+      const title=isHoliday?` title="${HOLIDAYS[ds]}"`:' title=""';
+      html+=`<div class="${cls}"${title}><span>${day}</span>${dot}${isHoliday&&!dot?'<div class="cal-holiday-dot"></div>':''}</div>`;
+    }
+    html+='</div></div>';
+  });
+  document.getElementById('cal-wrap').innerHTML=html;
+}
+
+function renderAll(){renderStats();renderHistory();renderCalendar();}
+
+function switchTab(t){
+  ['add','history','calendar','export'].forEach(n=>{
+    document.getElementById('tab-'+n).style.display=n===t?'block':'none';
+  });
+  document.querySelectorAll('.tab').forEach((el,i)=>{
+    el.classList.toggle('active',['add','history','calendar','export'][i]===t);
+  });
+  if(t==='export')updateExpPreview();
+  if(t==='history'){
+    // Set dropdown to current month if not already set by user
+    const sel=document.getElementById('hist-filter');
+    if(sel.options.length<=1){
+      // First time opening — renderHistory will set it to current month
+      const nowKey=new Date().getFullYear()+'-'+String(new Date().getMonth()+1).padStart(2,'0');
+      sel.value=nowKey;
+    }
+    renderHistory();
+  }
+}
+
+// ── Export preview ──
+document.addEventListener('change',function(e){if(e.target.id==='exp-month')updateExpPreview();});
+function updateExpPreview(){
+  const ym=document.getElementById('exp-month').value;
+  const [yr,mo]=ym.split('-').map(Number);
+  const entries=data.filter(d=>{const dt=new Date(d.date);return dt.getFullYear()===yr&&dt.getMonth()+1===mo;});
+  const prev=document.getElementById('exp-preview');
+  const empty=document.getElementById('exp-empty');
+  const list=document.getElementById('exp-preview-list');
+  if(!entries.length){prev.style.display='none';empty.style.display='block';return;}
+  empty.style.display='none';prev.style.display='block';
+  list.innerHTML=entries.map(e=>{
+    const dt=new Date(e.date);
+    const day=dt.toLocaleDateString('en-GB',{weekday:'short',day:'numeric'});
+    const otTxt=(e.ot>=0?'+':'')+fmt(e.ot);
+    return `<div style="display:flex;justify-content:space-between;font-size:13px;padding:4px 0;border-bottom:1px solid var(--border)">
+      <span style="font-weight:500">${day}</span>
+      <span style="font-family:'DM Mono',monospace;color:var(--text2)">${e.start}–${e.end}</span>
+      <span style="font-family:'DM Mono',monospace;color:var(--accent);font-weight:600">${otTxt}</span>
+    </div>`;
+  }).join('');
+}
+
+// ── Excel Export using ExcelJS ──
+async function exportExcel(){
+  const ym=document.getElementById('exp-month').value;
+  const [yr,mo]=ym.split('-').map(Number);
+  const entries=data.filter(d=>{const dt=new Date(d.date);return dt.getFullYear()===yr&&dt.getMonth()+1===mo;});
+  if(!entries.length){alert('No entries for this month.');return;}
+
+  // Build lookup: day number → entry
+  const byDay={};
+  entries.forEach(e=>{const d=new Date(e.date);byDay[d.getDate()]=e;});
+
+  const daysInMonth=new Date(yr,mo,0).getDate();
+  const GREEK_DAYS=['Κυριακή','Δευτέρα','Τρίτη','Τετάρτη','Πέμπτη','Παρασκευή','Σάββατο'];
+  const MONTH_NAMES=['','Ιανουαρίου','Φεβρουαρίου','Μαρτίου','Απριλίου','Μαΐου','Ιουνίου','Ιουλίου','Αυγούστου','Σεπτεμβρίου','Οκτωβρίου','Νοεμβρίου','Δεκεμβρίου'];
+
+  // Use ExcelJS
+  const ExcelJS=window.ExcelJS;
+  const wb=new ExcelJS.Workbook();
+  const ws=wb.addWorksheet('Όνομα 1');
+
+  // ── Helper to convert "HH:MM" string to Excel time fraction ──
+  function toExcelTime(hhmm){
+    const [h,m]=hhmm.split(':').map(Number);
+    return(h*60+m)/(24*60);
+  }
+  // ── Helper: overtime minutes → decimal hours ──
+  function otHours(minutes){return Math.round((minutes/60)*2)/2;} // round to nearest 0.5
+
+  // ── Column widths to match original ──
+  ws.columns=[
+    {width:12},{width:12},{width:10},{width:10},{width:18},{width:18},{width:18},{width:20},{width:14}
+  ];
+
+  // Row 11-12: column headers only (no name/month rows)
+  ws.mergeCells('A11:A12'); ws.getCell('A11').value='ΗΜΕΡΟΜΗΝΙΑ';
+  ws.mergeCells('B11:B12'); ws.getCell('B11').value='ΗΜΕΡΑ';
+  ws.mergeCells('C11:D11'); ws.getCell('C11').value='ΩΡΕΣ ΕΡΓΑΣΙΑΣ';
+  ws.mergeCells('E11:E12'); ws.getCell('E11').value='ΣΥΝΟΛΟ ΩΡΩΝ ΗΜΕΡΑΣ (1:1.5)';
+  ws.mergeCells('F11:F12'); ws.getCell('F11').value='ΣΥΝΟΛΟ ΩΡΩΝ ΗΜΕΡΑΣ  (1:2)';
+  ws.mergeCells('G11:G12'); ws.getCell('G11').value='ΣΥΝΟΛΟ ΩΡΩΝ ΗΜΕΡΑΣ  PART TIME';
+  ws.mergeCells('H11:H12'); ws.getCell('H11').value='ΠΑΡΑΤΗΡΗΣΕΙΣ';
+  ws.getCell('C12').value='ΑΠΟ';
+  ws.getCell('D12').value='ΜΕΧΡΙ';
+
+  ['A11','B11','C11','E11','F11','G11','H11','C12','D12'].forEach(c=>{
+    ws.getCell(c).font={bold:true,size:9};
+    ws.getCell(c).alignment={horizontal:'center',vertical:'middle',wrapText:true};
+  });
+
+  // Rows 13 onwards: one per day of selected month (only up to daysInMonth)
+  for(let day=1;day<=daysInMonth;day++){
+    const row=12+day;
+    const dt=new Date(yr,mo-1,day);
+    const entry=byDay[day];
+
+    // Column A: date always shown
+    const dateCell=ws.getCell(row,1);
+    dateCell.value=dt;
+    dateCell.numFmt='dd/mm/yyyy';
+    dateCell.alignment={horizontal:'center'};
+
+    if(entry){
+      // Column B: day name ONLY if there is an overtime entry
+      const dowCell=ws.getCell(row,2);
+      dowCell.value=GREEK_DAYS[dt.getDay()];
+      dowCell.alignment={horizontal:'center'};
+
+      // Column C: clock in
+      const fromCell=ws.getCell(row,3);
+      fromCell.value=toExcelTime(entry.start);
+      fromCell.numFmt='h:mm';
+      fromCell.alignment={horizontal:'center'};
+
+      // Column D: clock out
+      const toCell=ws.getCell(row,4);
+      toCell.value=toExcelTime(entry.end);
+      toCell.numFmt='h:mm';
+      toCell.alignment={horizontal:'center'};
+
+      // Column E: overtime hours (1:1.5)
+      if(entry.ot>0){
+        ws.getCell(row,5).value=otHours(entry.ot);
+        ws.getCell(row,5).alignment={horizontal:'center'};
+      }
+
+      // Column H: note
+      if(entry.note){
+        ws.getCell(row,8).value=entry.note;
+        ws.getCell(row,8).font={italic:true,size:9};
+      }
+
+      // Highlight overtime rows
+      for(let c=1;c<=8;c++){
+        ws.getCell(row,c).fill={type:'pattern',pattern:'solid',fgColor:{argb:'FFEEEEFF'}};
+      }
+    }
+    // No entry → column B stays blank, no highlight
+  }
+
+  // Totals row: right after last day
+  const totalRow=13+daysInMonth;
+  ws.mergeCells(`C${totalRow}:D${totalRow+1}`);
+  ws.getCell(`C${totalRow}`).value='ΣΥΝΟΛΟ ΩΡΩΝ ΕΡΓΑΣΙΑΣ ΜΗΝΑ:';
+  ws.getCell(`C${totalRow}`).font={bold:true,size:9};
+  ws.getCell(`C${totalRow}`).alignment={horizontal:'right',vertical:'middle'};
+
+  ws.mergeCells(`E${totalRow}:E${totalRow+1}`);
+  ws.getCell(`E${totalRow}`).value={formula:`SUM(E13:E${totalRow-1})`};
+  ws.getCell(`E${totalRow}`).font={bold:true};
+  ws.getCell(`E${totalRow}`).alignment={horizontal:'center',vertical:'middle'};
+
+  ws.mergeCells(`F${totalRow}:F${totalRow+1}`);
+  ws.getCell(`F${totalRow}`).value={formula:`SUM(F13:F${totalRow-1})`};
+  ws.getCell(`F${totalRow}`).font={bold:true};
+  ws.getCell(`F${totalRow}`).alignment={horizontal:'center',vertical:'middle'};
+
+  ws.mergeCells(`G${totalRow}:G${totalRow+1}`);
+  ws.getCell(`G${totalRow}`).value={formula:`SUM(G13:G${totalRow-1})`};
+  ws.getCell(`G${totalRow}`).font={bold:true};
+  ws.getCell(`G${totalRow}`).alignment={horizontal:'center',vertical:'middle'};
+
+  // Generate and download
+  const monthLabel=MONTH_NAMES[mo];
+  const fname=`Overtime_Form_${monthLabel}_${yr}.xlsx`;
+  const buf=await wb.xlsx.writeBuffer();
+  const blob=new Blob([buf],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;a.download=fname;a.click();
+  URL.revokeObjectURL(url);
+}
+
+['i-start','i-end','i-std'].forEach(id=>document.getElementById(id).addEventListener('input',updatePreview));
+const now=new Date();
+document.getElementById('hdr-date').textContent=now.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+document.getElementById('i-date').value=now.toISOString().split('T')[0];
+// Pre-select current month in export dropdown
+const curYM=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');
+const expSel=document.getElementById('exp-month');
+if(expSel){for(let o of expSel.options){if(o.value===curYM){o.selected=true;break;}}}
+load();renderAll();
+</script>
+</body>
+</html>
