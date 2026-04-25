@@ -253,7 +253,7 @@ let data=[];
 function load(){try{data=JSON.parse(localStorage.getItem(KEY))||[];}catch(e){data=[];}}
 function save(){localStorage.setItem(KEY,JSON.stringify(data));}
 function toMin(t){const[h,m]=t.split(':').map(Number);return h*60+m;}
-function fmt(m){const s=m<0?'-':'';const a=Math.abs(m);return s+Math.floor(a/60)+':'+String(a%60).padStart(2,'0');}
+function fmt(m){const s=m<0?'-':'';const a=Math.abs(m);const h=Math.floor(a/60);const min=a%60;if(min===0)return s+h+'h';if(h===0)return s+min+'m';return s+h+'h '+min+'m';}
 function calcOT(s,e,std){let sm=toMin(s),em=toMin(e);if(em<=sm)em+=1440;return(em-sm)-std*60;}
 
 function updatePreview(){
